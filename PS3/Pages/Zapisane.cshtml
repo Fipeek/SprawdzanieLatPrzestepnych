@@ -1,0 +1,10 @@
+﻿@page
+@model PS3.Pages.ZapisaneModel
+@{
+    ViewData["Title"] = "Data in session";
+}
+@if(Model.UserDataHolder!=null)
+{
+<p>@Model.UserDataHolder.name, @Model.UserDataHolder.year -  @Model.checkYear(Model.UserDataHolder.year)</p>
+
+}

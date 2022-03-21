@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="card">
+    <form method="post">
+    <p>Podaj imie</p>
+      <span asp-validation-for="UserDataHolder.name" class="text-danger"></span>
+    <input asp-for="UserDataHolder.name"/>
+    <p>Podaj Rok</p>
+    
+     <span asp-validation-for="UserDataHolder.year" class="text-danger"></span>
+    <input asp-for="UserDataHolder.year" />
+     
+   
+    <button type="submit">Zatwierdź</button>
+   
+</form>
+
+</div>
