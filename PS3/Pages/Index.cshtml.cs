@@ -29,7 +29,10 @@ namespace PS3.Pages
 
         public void OnGet()
         {
-            
+            var Data2 = HttpContext.Session.GetString("Data2");
+            if (Data2 != null)
+                Users =
+                JsonConvert.DeserializeObject<Users>(Data2);
 
         }
         public IActionResult OnPost()
