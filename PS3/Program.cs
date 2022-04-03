@@ -1,7 +1,12 @@
+using PS3.Data;
+ using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<UsersContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("PS3")));
 builder.Services.AddMemoryCache();
 builder.Services.AddSession(options =>
 {

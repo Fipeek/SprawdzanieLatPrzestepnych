@@ -27,7 +27,7 @@ html {
 
 
 .card {
-    height: 400px;
+    height: 500px;
     width: 800px;
     background-color: #5907AB;
     border: 2px solid #5907AB;
@@ -85,4 +85,16 @@ html {
     }
 .saved {
     height: auto;
+}
+.table {
+    color: white;
+    
+
+}
+td a{
+    color: white;
+    text-decoration: none;
+}
+body{
+    color:white;
 }

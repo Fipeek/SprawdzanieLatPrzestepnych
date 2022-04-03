@@ -1,7 +1,7 @@
 ﻿@page
-@model IndexModel
+@model PS3.Pages.WyszukiwanieModel
 @{
-    ViewData["Title"] = "Home page";
+
 }
 <div class="card">
     <form method="post">
@@ -19,7 +19,12 @@
 
     </form>
 </div>
-       
+ <div class="card">
+            @foreach (var item in Model.Users)
+            {
+                <p class="userData">@item.firstName @item.lastName @item.year - @item.checkYear()</p>
+            }
+       </div>
     
 
 
