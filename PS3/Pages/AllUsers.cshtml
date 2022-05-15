@@ -1,0 +1,28 @@
+﻿@page
+@model PS3.Pages.AllUsersModel
+@{
+
+}
+<div class="card saved"> 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Wszyscy uzytkownicy
+            </th>  <th>
+                Data Dodania
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var user in Model.Records.Users) {
+        <tr>
+            <td>
+                @user.FullName
+            </td>
+            <td>@user.Date</td>
+        </tr>
+}
+    </tbody>
+</table>

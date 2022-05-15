@@ -8,52 +8,42 @@ using System.Collections;
 using System.Web;
 using Microsoft.AspNetCore.Session;
 using PS3.Data;
+using PS3.Interfaces;
+using PS3.ViewModels.User;
 
 namespace PS3.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly UsersContext _context;
-        public IList<User> Users { get; set; }
-        [BindProperty]
-        public UsersInSession UsersInSession { get; set; }  
+        private readonly IUserService _userService;
+        public ListUserForListVM Records { get; set; }
+      
         [BindProperty]
         public User User { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, UsersContext context)
+        public IndexModel(ILogger<IndexModel> logger, IUserService userService)
         {
             _logger = logger;
-            _context = context;
+            _userService = userService;
+            
         }
 
         public void OnGet()
         {
-          
-            var Data2 = HttpContext.Session.GetString("Data2");
-            if (Data2 != null)
-                UsersInSession =
-                JsonConvert.DeserializeObject<UsersInSession>(Data2);
-            Users = _context.User.ToList();
+            Records = _userService.GetEntriesFromToday();
         }
         public IActionResult OnPost()
         {
-           
-            var Data2 = HttpContext.Session.GetString("Data2");
-            if (Data2 != null)
-                UsersInSession =
-                JsonConvert.DeserializeObject<UsersInSession>(Data2);
+                     
             if (ModelState.IsValid)
             {
                 User.date = DateTime.Now;
-                UsersInSession.Users.Add(User);
-                _context.User.Add(User);
+
+                _userService.AddEntry(User);
+                Records = _userService.GetEntriesFromToday();
                
             }
-              _context.SaveChanges();
-            Users = _context.User.ToList();
-            HttpContext.Session.SetString("Data2",
-               JsonConvert.SerializeObject(UsersInSession));
             return Page();
 ;        }
 

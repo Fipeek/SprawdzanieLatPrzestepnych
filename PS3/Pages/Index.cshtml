@@ -16,9 +16,32 @@
         <input asp-for="User.lastName" />
 
         <button type="submit">Zatwierdź</button>
-
+        
     </form>
-</div>
+</div>  
+<div class="card saved"> 
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Uzytkownicy zapisani dzisiaj
+            </th>  <th>
+                Data Dodania
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var user in Model.Records.Users) {
+        <tr>
+            <td>
+                @user.FullName
+            </td>
+            <td>@user.Date</td>
+        </tr>
+}
+    </tbody>
+</table>
        
     
 
