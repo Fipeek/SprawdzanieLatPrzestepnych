@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Session;
 using PS3.Data;
 using PS3.Interfaces;
 using PS3.ViewModels.User;
+using System.Security.Claims;
 
 namespace PS3.Pages
 {
@@ -20,7 +21,7 @@ namespace PS3.Pages
         public ListUserForListVM Records { get; set; }
       
         [BindProperty]
-        public User User { get; set; }
+        public User Person { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, IUserService userService)
         {
@@ -35,12 +36,14 @@ namespace PS3.Pages
         }
         public IActionResult OnPost()
         {
-                     
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
             if (ModelState.IsValid)
             {
-                User.date = DateTime.Now;
-
-                _userService.AddEntry(User);
+                Person.date = DateTime.Now;
+                Person.admin = _userService.GetUser(claims.Value);
+                _userService.AddEntry(Person);
                 Records = _userService.GetEntriesFromToday();
                
             }

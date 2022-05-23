@@ -3,11 +3,18 @@ using PS3.Data;
 using PS3.Interfaces;
 using PS3.Services;
 using PS3.Repositories;
+using Microsoft.AspNetCore.Identity;
+using PS3.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<UsersContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PS3")));
+builder.Services.AddIdentity<Admin, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<UsersContext>().AddDefaultUI().AddDefaultTokenProviders();
 builder.Services.AddTransient<IUserService,UserService>();
 builder.Services.AddTransient<IUserRepository,
 UserRepository>();
@@ -36,6 +43,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 app.UseSession();

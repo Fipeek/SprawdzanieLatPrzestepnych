@@ -8,5 +8,7 @@ namespace PS3.Interfaces
         ListUserForListVM GetUsersForList();
         void AddEntry(User user);
         ListUserForListVM GetEntriesFromToday();
+
+        Admin GetUser(string userId);
     }
 }

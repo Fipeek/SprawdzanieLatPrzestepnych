@@ -57,6 +57,10 @@ namespace PS3.Services
         {
             _userRepo.AddEntry(user);
         }
+        public Admin GetUser(string userId)
+        {
+            return (Admin)_userRepo.GetUser(userId);
+        }
 
 
     }

@@ -1,4 +1,5 @@
-﻿using PS3.Data;
+﻿using Microsoft.AspNetCore.Identity;
+using PS3.Data;
 using PS3.Interfaces;
 using PS3.Models;
 
@@ -24,6 +25,10 @@ namespace PS3.Repositories
         public IQueryable<User> GetEntriesFromToday()
         {
             return _context.User.Where(p=> p.date == DateTime.Today);
+        }
+        public IdentityUser GetUser(string UserId)
+        {
+            return _context.Users.Find(UserId);
         }
 
        

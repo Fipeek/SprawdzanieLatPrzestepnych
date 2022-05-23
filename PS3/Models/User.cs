@@ -5,6 +5,7 @@ namespace PS3.Models
 {
     public class User
     {   
+        public Admin admin { get; set; }    
         public int id { get; set; }
         [Required]
         [Range(1899,2022,ErrorMessage = "Zakres lat 1899-2022")]

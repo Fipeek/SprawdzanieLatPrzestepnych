@@ -6,14 +6,14 @@
 <div class="card">
     <form method="post">
         <p>Podaj imie</p>
-        <span asp-validation-for="User.firstName" class="text-danger"></span>
-        <input asp-for="User.firstName" />
+        <span asp-validation-for="Person.firstName" class="text-danger"></span>
+        <input asp-for="Person.firstName" />
         <p>Podaj Rok</p>
 
-        <span asp-validation-for="User.year" class="text-danger"></span>
-        <input asp-for="User.year" />
+        <span asp-validation-for="Person.year" class="text-danger"></span>
+        <input asp-for="Person.year" />
         <p>Podaj Nazwisko (opcjonalne)</p>
-        <input asp-for="User.lastName" />
+        <input asp-for="Person.lastName" />
 
         <button type="submit">Zatwierdź</button>
         
