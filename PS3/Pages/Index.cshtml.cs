@@ -35,8 +35,8 @@ namespace PS3.Pages
             Records = _userService.GetEntriesFromToday();
         }
         public IActionResult OnPost()
-        {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
+        { - z
+            var claimsIdentity = (ClaimsIdentity)User.Identity; //problemem sa prawdopodbnie te linijki - znalezienie i dodanie admina
             var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
             if (ModelState.IsValid)
